@@ -1,0 +1,534 @@
+[![](/images/sf_logo.png)](https://acegikmo.com/shaderforge/)
+
+Main
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">This is the node in which all your other nodes in the end link to. It has several inputs that all serve different purposes.<br>The animated images below show all of the inputs and how they behave when changed over time. Most of them animate back and forth between 0 and 1 (Black and White)<br><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_diffuse.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Diffuse</div><div class="node_desc_main_input_desc">This is the main color of your shaders. The diffuse color will receive light, have light falloff depending on the light-normal angle, and be shaded by shadows.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_diffusepower.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Diffuse Power</div><div class="node_desc_main_input_desc">This is the exponent of the falloff of the light-normal angle. Can be used to get an extra metallic look when using values above 1. Note that this does not currently conserve energy, whenever that is enabled.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_specular.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Specular</div><div class="node_desc_main_input_desc">This is the color of the specular highlights of your shader. Higher values are brighter, black will not affect the shader at all.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_gloss.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Gloss</div><div class="node_desc_main_input_desc">This is the exponent of the specular highlights. Higher values will make it look shiny, values approaching 0 will make it look matte. Note that if you have unchecked gloss remapping, you should avoid using gloss values below 1.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_normal.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Normal</div><div class="node_desc_main_input_desc">This is the tangent-space normal direction, where you can connect normal maps or custom normal vectors.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_emission.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Emission</div><div class="node_desc_main_input_desc">This is simply light that is always added to your shader, regardless of the lighting conditions.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_transmission.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Transmission</div><div class="node_desc_main_input_desc">This controls how much light is passed through when the light source is behind the surface currently being rendered. This can be useful for thin materials such as cloth or vegetation.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_lightwrapping.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Light Wrapping</div><div class="node_desc_main_input_desc">This is a way of controlling the light-normal angle falloff offset, which can be used to get an effect similar to subsurface scattering. Works best for smooth objects. Inputting a red-ish value will make the red channel "wrap around" the object more than the others, making it look as if light passed into the mesh, and came out with a red wavelength, similar to how skin is shaded.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_diffuseambientlight.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Diffuse Ambient Light</div><div class="node_desc_main_input_desc">This adds light to your shader, affected by your diffuse. Can be used with, for example, cubemap using the normal direction for image-based lighting (IBL), or ambient light</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_specularambientlight.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Specular Ambient Light</div><div class="node_desc_main_input_desc">This adds light to your shader, affected by your specular. Can be used with, for example, a cubemap using the view reflection direction for image-based lighting (IBL)</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_diffuseambientlight.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Diffuse Ambient Occlusion</div><div class="node_desc_main_input_desc">This dampens indirect diffuse light, such as light probes, indirect light, and diffuse ambient light</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_specularambientlight.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Specular Ambient Occlusion</div><div class="node_desc_main_input_desc">This dampens indirect specular light, such as reflection probes, and specular ambient light</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_customlighting.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Custom Lighting</div><div class="node_desc_main_input_desc">This input is active when your shader is set to unlit, allowing you to define custom lighting behaviour. The nodes you put here are per-light.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_alpha.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Opacity</div><div class="node_desc_main_input_desc">Opacity controls the transparency of the final pixel. Note that partial transparency is generally finicky to get right, especially when using deferred rendering.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_alphaclip.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Opacity Clip</div><div class="node_desc_main_input_desc">Opacity Clip is a way of controlling if the current pixel/fragment should draw or not. Always use Opacity Clip for objects that need transparency, but not partial transparency, as Opacity Clip is easily sorted, which Opacity is not.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_refraction.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Refraction</div><div class="node_desc_main_input_desc">Refraction is a screen-space UV offset for refracting the background pixels. Make sure you set the alpha to something below 1 before using, so that the refraction effect is visible.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_outlinewidth.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Outline Width</div><div class="node_desc_main_input_desc">This will add an outline to your shader, rendered as an offset mesh with reversed face normals. Note that hard edges will break the outline.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_outlinecolor.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Outline Color</div><div class="node_desc_main_input_desc">This controls the color of the outline.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_vertexoffset.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">Vertex Offset</div><div class="node_desc_main_input_desc">This can be used to animate shaders over time, or change the shape of the object in various conditions. You simply insert a XYZ coordinate for how much each vertex should be offset.</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_displacement.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">DX11 Displacement</div><div class="node_desc_main_input_desc">This works very much in the same way as Vertex Offset, but is used in conjunction with DX11 tessellation. (Note that DirectX is Windows only, requires a DX11 GPU and has to be enabled in Unity)</div></div></div><br><div class="node_desc_main_input"><div class="node_desc_inner_img"><img src="/images/main_input_tessellation.gif"></div><div class="node_desc_main_input_right"><div class="node_desc_main_input_title">DX11 Tessellation</div><div class="node_desc_main_input_desc">This controls how many subdivisions you want to split your triangles into. (Note that DirectX is Windows only, requires a DX11 GPU and has to be enabled in Unity)</div></div></div><br></div></td></tr></tbody></table>
+
+Add
+
+A + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_add.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the sum [A] + [B]</div></td></tr></tbody></table>
+
+Subtract
+
+S + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_subtract.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the difference [A] - [B]</div></td></tr></tbody></table>
+
+## Multiply
+
+M + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_multiply.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the product [A] * [B]</div></td></tr></tbody></table>
+
+Divide
+
+D + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_divide.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the quotient [A] / [B]</div></td></tr></tbody></table>
+
+Reciprocal
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the quotient 1 / input</div></td></tr></tbody></table>
+
+Power
+
+E + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_power.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the power [Val] ^ [Exp]</div></td></tr></tbody></table>
+
+Sqrt
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the square root of its input</div></td></tr></tbody></table>
+
+Log
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the logarithm of its input. You can switch log base in the dropdown menu</div></td></tr></tbody></table>
+
+Min
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_min.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the minimum of [A] and [B]</div></td></tr></tbody></table>
+
+Max
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_max.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the maximum of [A] and [B]</div></td></tr></tbody></table>
+
+Abs
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_abs.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the absolute value of its input. Essentially; it makes negative values positive</div></td></tr></tbody></table>
+
+Sign
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_sign.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the sign of its input.<br>Values greater than 0 outputs 1<br>Values equal to 0 outputs 0<br>Values less than 0 outputs -1</div></td></tr></tbody></table>
+
+Ceil
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_ceil.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its input rounded up to the nearest integer</div></td></tr></tbody></table>
+
+Round
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_round.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its input rounded to the nearest integer</div></td></tr></tbody></table>
+
+Floor
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_floor.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its input rounded down to the nearest integer</div></td></tr></tbody></table>
+
+Trunc
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_trunc.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its input rounded to the nearest integer towards zero. Essentially; it removes the decimals, leaving an integer</div></td></tr></tbody></table>
+
+Step (A <= B)
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_step.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs 1 if [A] is less than or equal to [B], otherwise outputs 0</div></td></tr></tbody></table>
+
+Smoothstep
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Blends smoothly between two values, based on where a third value is in that range, outputting values between 0 and 1. Think of it as a clamped inverse lerp with a smoothed output value.</div></td></tr></tbody></table>
+
+If
+
+I + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the [A&gt;B] input when [A] is greater than [B]<br>Outputs the [A=B] input when [A] is equal to [B]<br>Outputs the [A&lt;B] input when [A] is less than [B]</div></td></tr></tbody></table>
+
+Frac
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_frac.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the fractional part of its input. Essentially; it removes the integer part and keeps only the decimal part. An input of 4.32 would output 0.32. This node is particularly useful in conjunction with the Time node, which gives you a sawtooth wave over time</div></td></tr></tbody></table>
+
+Fmod
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the remainder of [A] divided by [B]</div></td></tr></tbody></table>
+
+Clamp
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its main input value, no less than [Min] and no more than [Max]</div></td></tr></tbody></table>
+
+Clamp (Simple)
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">The same as Clamp, but with two numerical inputs for Min and Max instead of node connectors</div></td></tr></tbody></table>
+
+Clamp 0-1
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_clamp01.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its input value, no less than 0 and no more than 1</div></td></tr></tbody></table>
+
+Lerp
+
+L + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_lerp.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Lerp is used to blend between two values or colors.<br>If [T] is 0, it will output [A]<br>If [T] is 0.5, it will output a halfway blend between [A] and [B]<br>If [T] is 1, it will output [B]<br>If [T] is any other value, it will output a linear blend of the two.</div></td></tr></tbody></table>
+
+Lerp (Simple)
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">The same as Lerp, but with two numerical inputs for [A] and [B] instead of node connectors</div></td></tr></tbody></table>
+
+InverseLerp
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_inverselerp.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">InverseLerp is usually used to remap ranges.<br>If [T] is equal to [A], it will output 0<br>If [T] is halfway between [A] and [B], it will output 0.5<br>If [T] is equal to [B], it will output 1<br>If [T] is any other value, it will output a linear blend of the two.</div></td></tr></tbody></table>
+
+Posterize
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_posterize.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Rounds values based on the value coming through [Steps]. A [Steps] value of 5 will create 5 bands in the 0 to 1 range</div></td></tr></tbody></table>
+
+Blend
+
+B + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_blend.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Blends A over B using the specified method</div></td></tr></tbody></table>
+
+Remap
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_remaprangeadvanced.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Remaps a value from one range to another. Same as Remap (Simple), but with inputs instead of numerical constants</div></td></tr></tbody></table>
+
+Remap (Simple)
+
+R + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_remaprange.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Remaps a value from one range to another. For instance, if the node expects values from -1 to 1, but you want it to output a value from 2 to 5, you can type -1 and 1 on the first line, 2 and 5 on the second line</div></td></tr></tbody></table>
+
+Noise
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_noise.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Generates pseudorandom numbers based on a two-component input (Such as UV coordinates)</div></td></tr></tbody></table>
+
+One Minus
+
+O + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_oneminus.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs 1 minus its input. When used with color inputs, it will invert the color</div></td></tr></tbody></table>
+
+Negate
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_negate.jpg"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the main input multiplied by -1. Essentially makes positive values negative, and negative values positive</div></td></tr></tbody></table>
+
+Exp
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">When Exp is selected: Outputs e to the power of its input<br>When Exp 2 is selected: Outputs 2 to the power of its input</div></td></tr></tbody></table>
+
+Hue
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_hue.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs an RGB color given a Hue</div></td></tr></tbody></table>
+
+HSV to RGB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_hsvtorgb.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs an RGB color given a HSV (Hue, Saturation and Value) input. Hue and Saturation are between 0 and 1. Value is too, but can go beyond 1 to overexpose colors</div></td></tr></tbody></table>
+
+RGB to HSV
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_rgbtohsv.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs HSV (Hue, Saturation and Value) components given a color input. Hue and Saturation are between 0 and 1. Value can go beyond 1 for overexposed colors</div></td></tr></tbody></table>
+
+Value
+
+1 + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A numerical value, can also be called a "Vector 1". A property version is also available. Values can be used with the Append node to create Vectors with more components. Values can also be multiplied with vectors/colors. For example, a vector (3,1,0) multiplied by a value of 0.5, outputs the vector (1.5,0.5,0)</div></td></tr></tbody></table>
+
+Vector 2
+
+2 + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A vector with two components/values. Usually used with UV coordinates. Adding a Vector 2 to UV coordinates, will translate the UVs. Multiplying UV coordinates with a Vector 2 will scale the UVs</div></td></tr></tbody></table>
+
+Vector 3
+
+3 + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A vector with three components/values. Usually used as a color, position or direction</div></td></tr></tbody></table>
+
+Vector 4
+
+4 + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A vector with four components/values. Usually used as a color with an alpha channel, or as a position with some extra data in the fourth channel. There are two parameters to expose in the inspector available. Color and Vector 4 parameter</div></td></tr></tbody></table>
+
+Texture 2D
+
+T + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_tex2d.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Contains a reference to a texture and will sample a texture at a specific UV coordinate with a specific MIP level (if connected). If the [Tex] input is connected by a Texture Asset node, this will no longer be a parameter in the inspector. Outputs [RGB] as well as separate channels</div></td></tr></tbody></table>
+
+Texture Asset
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_tex2dasset.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Contains a reference to a texture. This is used to sample a single texture multiple times - Can only be connected to the [Tex] input of Texture 2D nodes. This will also be reflected in the inspector of the material, so the user only need to assign one texture</div></td></tr></tbody></table>
+
+Value (Property)
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A numerical value; same as Value, but exposed in the material inspector</div></td></tr></tbody></table>
+
+Vector 4 (Property)
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A vector with four components/values, same as Vector 4, but exposed in the material inspector as 4 separate X, Y, Z and W values</div></td></tr></tbody></table>
+
+Color
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A vector with four components/values, same as Vector 4, but exposed in the material inspector with a color picker</div></td></tr></tbody></table>
+
+Cubemap
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Contains a reference to a cubemap and will sample a it in a specific direction with a specific MIP level (If connected). Outputs [RGB] as well as separate channels</div></td></tr></tbody></table>
+
+Slider
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Allows you to easily tweak a value between a min and a max value. Is also exposed to the inspector</div></td></tr></tbody></table>
+
+Switch
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_switchproperty.gif"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Switches between two inputs based on a checkbox. Note that this cannot be used to optimize a shader, it will process both branches, but only show one</div></td></tr></tbody></table>
+
+Toggle
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A value that is either 0 or 1 based on a checkbox</div></td></tr></tbody></table>
+
+Dot Product
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the Dot product between [A] and [B]. Essentially; for two normalized vectors, it outputs how far they point away from each other. If they point in the same direction, it outputs 1, if they are perpendicular to each other, it outputs 0, if they point in opposite directions, it outputs -1.<br>Dropdown selections:<br>Standard - Regular Dot Product<br>Positive - Makes all negative values 0<br>Negative - Makes all positive values 0<br>Abs - Makes all negative values positive<br>Normalized - Outputs in the range 0 to 1 instead of -1 to 1<br><br>The graph below show how the different modes behave when using two normalized vectors.<br>On the X axis you have the angle between them, on the Y axis you have the output value:<br><img src="/images/sfn_dot.jpg"></div></td></tr></tbody></table>
+
+Cross Product
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the Cross product of [A] and [B]. Essentially; it outputs a vector perpendicular to both input vectors</div></td></tr></tbody></table>
+
+Reflect
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the reflection vector of an incoming vector [I] as if reflected/bounced on a surface with the normal [N]</div></td></tr></tbody></table>
+
+Normalize
+
+N + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the normalized version of the input vector. Essentially; sets the length of the vector to 1, while keeping the same direction</div></td></tr></tbody></table>
+
+Append
+
+Q + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_append.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs a single vector from multiple input values/vectors. For example, if [A] is a Vector 2, and [B] is a Value (Vector 1), the node will output a Vector 3, where [A] is in the red and green channel, while [B] is in the blue channel</div></td></tr></tbody></table>
+
+Component Mask
+
+C + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_componentmask.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">The component mask can be used to reorder or extract channels of a vector</div></td></tr></tbody></table>
+
+Desaturate
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_desaturate.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs a desaturated version of the input [Col]. [Des] Determines how desaturated it is. A value of 1 means fully desaturated, 0.5 means half-desaturated, 0 means no desaturation</div></td></tr></tbody></table>
+
+Channel Blend
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_channelblend.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the sum of each component of the mask multiplied by the corresponding color input. Useful for triplanar blending</div></td></tr></tbody></table>
+
+Normal Blend
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Combines two tangent-space normal directions, where the base normal is perturbed by the detail normal</div></td></tr></tbody></table>
+
+Distance
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_distance.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the distance between the two input points [A] and [B]</div></td></tr></tbody></table>
+
+Length
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_length.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the length/magnitude of its input vector</div></td></tr></tbody></table>
+
+Transform
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Transforms a vector from one space to another. You can switch between world/local/tangent/view. The built-in vectors are in world space. Directions into the normal input is in tangent space.</div></td></tr></tbody></table>
+
+Vector Projection
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs vector [A] projected onto vector [B]</div></td></tr></tbody></table>
+
+Vector Rejection
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs vector [A] rejected from vector [B]</div></td></tr></tbody></table>
+
+DDX
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the partial derivative (rate of change) of the input vector in screen space along the X-axis</div></td></tr></tbody></table>
+
+DDY
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the partial derivative (rate of change) of the input vector in screen space along the Y-axis</div></td></tr></tbody></table>
+
+DDXY
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the absolute sum of the two partial derivatives (rate of change) of the input vector in screen space along the X and Y-axis. Known as fwidth() in code.</div></td></tr></tbody></table>
+
+Panner
+
+P + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the input [UV] coordinates, panned/offset by [Dist] distance, in the direction/speed specified by the U and V parameters</div></td></tr></tbody></table>
+
+Rotator
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_rotator.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the input [UV] coordinates rotated by [Ang] radians around the pivot point [Piv]. If [Ang] is not connected, or connected to a time node, [Spd] will control the rotation speed</div></td></tr></tbody></table>
+
+Parallax
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the input [UV] coordinates with a parallax offset derived from the [Hei] input, with a depth of [Dep] and a reference height [Ref].<br>A [Ref] height of 0 means it will parallax as if the heightmap sticks out from the mesh<br>A [Ref] height of 1 means it will parallax as if the heightmap goes down into the mesh<br></div></td></tr></tbody></table>
+
+UV Tile
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_uvtile.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">UV Tile can be used to get a tile within a tilemap, in the form of UV coordinates.<br>[UV] is the base UVs to get a tile inside<br>[Wid] is the amount of tiles along the tilemap's width<br>[Hei] is the amount of tiles along the tilemap's height<br>[Tile] is the index of the tile in the tilemap you want to extract. Specify this as an integer, where 0 is the first tile, starting from the bottom left.</div></td></tr></tbody></table>
+
+UV Coordinates
+
+U + LMB
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the specified UV coordinate for this part of the geometry. The dropdown allows you to select either UV channel 0 or UV channel 1. Note that lightmapped meshes use UV1 for their lightmap UVs</div></td></tr></tbody></table>
+
+Object Position
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_objectposition.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the world position of the object's pivot point</div></td></tr></tbody></table>
+
+Object Scale
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_objectscale.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the scale of the object. Checking reciprocal is computationally cheaper, but gives you the inverse scale (1 / scale). Note that this will not work if the mesh is batched.</div></td></tr></tbody></table>
+
+Screen Position
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_screenpos.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the screen position of the current part of the mesh, can be used as UV coordinates for screen-space mapping. In the dropdown box, "Normalized" will put {0,0} in the center of the screen, and {1,1} in the top right. "Tiled" will keep {0,0} in the center, but will scale on the X axis based on your aspect ratio</div></td></tr></tbody></table>
+
+World Position
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_fragmentposition.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the position of the current part of the mesh in world space</div></td></tr></tbody></table>
+
+Vertex Color
+
+V + LMB
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_vertexcolor.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the vertex color. If you've baked ambient occlusion in the vertex colors, or want to tint the mesh with painted colors, or use vertex colors for anything else, this is the node you want</div></td></tr></tbody></table>
+
+Fresnel
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_fresnel.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the dot product between the surface normal and the view direction. [Nrm] is used if you want to use a custom normal. By default, the perturbed normal is used. [Exp] changes the exponent of the output. Higher values will make the fresnel thinner</div></td></tr></tbody></table>
+
+Normal Direction
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_normalvector.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the direction of the mesh normal, in world space. The Perturbed checkbox makes it use the normals after having applied the "Normal" input of the main node, such as a normal map.</div></td></tr></tbody></table>
+
+Bitangent Direction
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_binormal.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the direction of the mesh bitangent, in world space</div></td></tr></tbody></table>
+
+Tangent Direction
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_tangent.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the direction of the mesh tangent, in world space</div></td></tr></tbody></table>
+
+View Direction
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_viewvector.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the direction from the current part of the geometry to the camera, in world space</div></td></tr></tbody></table>
+
+View Reflection
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_viewreflectionvector.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the direction of the view as if bounced according to the surface normal. This can be used as input for cubemaps for perfect reflections</div></td></tr></tbody></table>
+
+Face Sign
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_facesign.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">This is used to detect if the current face is a frontface or a backface. Outputs 1 on frontfaces, and either -1 or 0 for backfaces, depending on what you specify in the dropdown box.</div></td></tr></tbody></table>
+
+Light Color
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_lightcolor.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the color of the current light being rendered</div></td></tr></tbody></table>
+
+Light Attenuation
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_lightattenuation.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the light attenuation. This node contains both the light falloff and shadows in one</div></td></tr></tbody></table>
+
+Ambient Light
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_ambientlight.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the ambient light of the scene the shader is being rendered in</div></td></tr></tbody></table>
+
+Light Direction
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_lightvector.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the direction to the current light being rendered</div></td></tr></tbody></table>
+
+Half Direction
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_halfvector.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the half-direction. This is the direction that points halfway between the view and the light vector, which is commonly used in the blinn-phong specular model</div></td></tr></tbody></table>
+
+Light Position
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_lightposition.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the position of the current light being rendered.<br>[Pnt] Outputs 1 if the current light being rendered is a point light, otherwise it outputs 0</div></td></tr></tbody></table>
+
+Time
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_time.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs time at different rates.<br>[t/20] outputs the time running 20 times slower<br>[t] outputs the current time<br>[t*2] outputs the time running twice as fast<br>[t*3] outputs the time running thrice as fast</div></td></tr></tbody></table>
+
+View Position
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_viewposition.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the current location of the view/camera (Note that when using perspective cameras, the view position is "behind" the screen)</div></td></tr></tbody></table>
+
+Projection Parameters
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_projectionparameters.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs four projection parameters.<br>[Sign] is -1 if currently rendering with a flipped projection matrix, otherwise it's 1<br>[Near] is the near plane distance of the current camera<br>[Far] is the far plane distance of the current camera<br>[1/Far] is the reciprocal distance of the far plane</div></td></tr></tbody></table>
+
+Screen Parameters
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_screenparameters.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs four screen parameters.<br>[pxW] is the width of the screen in pixels<br>[pxH] is the height of the screen in pixels<br>[1+1/W] is 1 plus the reciprocal of the screen pixel width<br>[1+1/H] is 1 plus the reciprocal of the screen pixel height</div></td></tr></tbody></table>
+
+Pixel Size
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the size of each pixel as a percentage of the screen width and height.<br>For example, with a resolution of 8x4, this would output a vector with values (0.125, 0.25)</div></td></tr></tbody></table>
+
+Fog Color
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_fogcolor.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the color of the fog in the current scene</div></td></tr></tbody></table>
+
+Scene Color
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A texture containing a render of the scene before this object was rendered. By default, its UVs are in screen space, making each pixel represent the color behind the object. This can be used for more advanced blending/transparency effects, or a manual way of making refraction if the UVs are altered, among other things</div></td></tr></tbody></table>
+
+Scene Depth
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">The depth from the camera to the scene behind the current pixel. Note: You have to turn off depth buffer writing in the blend settings, and you need to use a <a href="http://docs.unity3d.com/Documentation/Components/SL-CameraDepthTexture.html">camera that renders a depth texture</a></div></td></tr></tbody></table>
+
+Depth Blend
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">This outputs a value between 0 and 1, depending on how close this pixel is to the background geometry, based on the distance input. Useful for fading out edges of water, or softening up lightshafts intersecting geometry. Note: You have to turn off depth buffer writing in the blend settings, and you need to use a <a href="http://docs.unity3d.com/Documentation/Components/SL-CameraDepthTexture.html">camera that renders a depth texture</a></div></td></tr></tbody></table>
+
+Depth
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">This is the distance from the camera's near plane to the object itself</div></td></tr></tbody></table>
+
+Pi
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_pi.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the value of Pi, the ratio of a circle's circumference to its diameter (Approximately 3.141593)</div></td></tr></tbody></table>
+
+Tau
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_tau.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the value of Tau, the ratio of a circle's circumference to its radius (Approximately 6.283185)</div></td></tr></tbody></table>
+
+Phi (Golden ratio)
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_phi.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the value of Phi, the golden ratio (Approximately 1.618034)</div></td></tr></tbody></table>
+
+Root 2
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_root2.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the square root of two (Approximately 1.414214)</div></td></tr></tbody></table>
+
+e (Euler's Constant)
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_e.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs Euler's constant e (Approximately 2.718282)</div></td></tr></tbody></table>
+
+Sin
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the sine of its input</div></td></tr></tbody></table>
+
+Cos
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the cosine of its input</div></td></tr></tbody></table>
+
+Tan
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the tangent of its input</div></td></tr></tbody></table>
+
+ArcSin
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the arcsine of its input, in radians</div></td></tr></tbody></table>
+
+ArcCos
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the arccosine of its input, in radians</div></td></tr></tbody></table>
+
+ArcTan
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the arctangent of its input, in radians</div></td></tr></tbody></table>
+
+ArcTan2
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_arctan2.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the arctangent of its two inputs coordinates. The range and unit depends on the dropdown box. By default it's in radians, from -pi to pi.</div></td></tr></tbody></table>
+
+Matrix 4x4
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_matrix4x4.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A constant matrix. The initial values are that of an identity matrix</div></td></tr></tbody></table>
+
+Matrix 4x4 Property
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_matrix4x4property.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A matrix property. You can assign to it on the C# end using myMaterial.SetMatrix</div></td></tr></tbody></table>
+
+Multiply Matrix
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_multiplymatrix.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A matrix multiply node. Can be used to transform vectors, spaces, or other matrices. You can assign to it on the C# end using myMaterial.SetMatrix(). Note that matrix multiplication is not commutative. That is to say, A * B is not the same thing as B * A</div></td></tr></tbody></table>
+
+Transpose
+
+<table><tbody><tr><td></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs the transpose of a matrix</div></td></tr></tbody></table>
+
+Code
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_code.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">A node for doing custom code inside a shader. In the example to the left, the node will work similar to a lerp, that curves towards [mid] before reaching [end]</div></td></tr></tbody></table>
+
+Relay
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_relay.png"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Outputs its input, useful for organizing node connections</div></td></tr></tbody></table>
+
+Set
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_set.gif"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Saves a variable to be reused later. Useful for cleaning up large node trees</div></td></tr></tbody></table>
+
+Get
+
+<table><tbody><tr><td><div class="node_desc_inner_img"><img src="/images/sfn_get.gif"></div></td><td style="vertical-align: top;"><div class="node_desc_inner_txt">Gets one of the previously defined variables using the Set node. Useful for cleaning up large node trees</div></td></tr></tbody></table>
+
+Shader Forge © Freya 'Acegikmo' Holmér
+webmaster@acegikmo.com
