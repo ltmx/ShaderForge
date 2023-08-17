@@ -1,10 +1,6 @@
 # SHADER FORGE
 
-
-[![](/.images/sf_logo.png)](https://acegikmo.com/shaderforge/)
-
-
-![](/.images/shaderforge1.jpg)
+[![](/.images/shaderforge1.jpg)](https://acegikmo.com/shaderforge/)
 
 ---
 
@@ -12,24 +8,25 @@
 
 ---
 
+### To install, clone this repo to your assets folder.
 
-Installation
--------------
-Put the "ShaderForge" folder in the project you want to use Shader Forge in.
-If you have an old version of Shader Forge installed, remove the *entire* ShaderForge folder before installing the new one
-
-
-Quick start
-------------
-- Opening Shader Forge = Window -> Shader Forge
+## Quick start
 - Panning = Click and drag empty space
+
 - Zooming = Mouse wheel
+
 - Adding nodes = RMB + select node OR drag from right panel and place OR hold the first letter of the node name, and scroll to the node you want, then click
+
 - Moving nodes = Click and drag
+
 - Selecting nodes = Click to select, shift/control click to add to selection
+
 - Box select nodes = Hold Alt + Drag. Shift/control click to add to selection
+
 - Deleting nodes = Select and press delete
+
 - Deleting connections = Hold alt and drag RMB in empty space to start cutting lines.
+
 - Disconnect connectors = Alt+RMB on connectors to disconnect them. Alternatively, hover the cursor over a connector and press backspace
 
 
