@@ -16,7 +16,7 @@ namespace ShaderForge {
 
 
 	public delegate T Func<T>();
-	
+
 	public enum UpToDateState{ UpToDate, OutdatedSoft, OutdatedHard };
 
 	[Serializable]
@@ -87,7 +87,7 @@ namespace ShaderForge {
 		[NonSerialized]
 		public bool initialized = false;
 
-		
+
 
 
 		public SF_Editor() {
@@ -103,7 +103,7 @@ namespace ShaderForge {
 			else
 				EditorWindow.GetWindow<SF_Editor>(); // Focus
 		}
-		 
+
 		void OnEnable() {
 			SF_Settings.LoadAllFromDisk();
 			titleContent = new GUIContent( "Shader Forge", (Texture)SF_GUI.Icon );
@@ -211,7 +211,7 @@ namespace ShaderForge {
 			AddTemplate( typeof( SFN_RgbToHsv ),		catArithmetic + "RGB to HSV" );
 			AddTemplate( typeof( SFN_Round ), 			catArithmetic + "Round" );
 			AddTemplate( typeof( SFN_Sign ), 			catArithmetic + "Sign" );
-			AddTemplate( typeof( SFN_Smoothstep ),		catArithmetic + "Smoothstep" ).MarkAsNewNode();
+			AddTemplate( typeof( SFN_Smoothstep ),		catArithmetic + "Smoothstep" );
 			AddTemplate( typeof( SFN_Sqrt ), 			catArithmetic + "Sqrt" );
 			AddTemplate( typeof( SFN_Step ), 			catArithmetic + "Step (A <= B)", KeyCode.None, "Step"  );
 			AddTemplate( typeof( SFN_Subtract ), 		catArithmetic + "Subtract", KeyCode.S );
@@ -236,7 +236,7 @@ namespace ShaderForge {
 			AddTemplate( typeof( SFN_ValueProperty ), 		catProps + "Value" );
 			AddTemplate( typeof( SFN_Vector4Property ),		catProps + "Vector 4" );
 
-			//string catBranching = "Branching/"; 
+			//string catBranching = "Branching/";
 			//AddTemplate( typeof( SFN_StaticBranch ), catBranching + "Static Branch" );
 
 			string catVecOps = "Vector Operations/";
@@ -246,7 +246,7 @@ namespace ShaderForge {
 			AddTemplate( typeof( SFN_Cross ), 			catVecOps + "Cross Product" );
 			AddTemplate( typeof( SFN_Desaturate ), 		catVecOps + "Desaturate" );
 			AddTemplate( typeof( SFN_DDX ),				catVecOps + "DDX" );
-			AddTemplate( typeof( SFN_DDXY ),			catVecOps + "DDXY" ).MarkAsNewNode();
+			AddTemplate( typeof( SFN_DDXY ),			catVecOps + "DDXY" );
 			AddTemplate( typeof( SFN_DDY ),				catVecOps + "DDY" );
 			AddTemplate( typeof( SFN_Distance ), 		catVecOps + "Distance" );
 			AddTemplate( typeof( SFN_Dot ), 			catVecOps + "Dot Product" );
@@ -289,7 +289,7 @@ namespace ShaderForge {
 			AddTemplate( typeof( SFN_LightColor ), 			catLighting + "Light Color" ).UavailableInDeferredPrePass();
 			AddTemplate( typeof( SFN_LightVector ), 		catLighting + "Light Direction" ).UavailableInDeferredPrePass();
 			AddTemplate( typeof( SFN_LightPosition ), 		catLighting + "Light Position" ).UavailableInDeferredPrePass();
-			
+
 			string catExtData = "External Data/";
 			AddTemplate( typeof( SFN_PixelSize ),				catExtData + "Pixel Size" );
 			AddTemplate( typeof( SFN_ProjectionParameters ), 	catExtData + "Projection Parameters" );
@@ -324,19 +324,19 @@ namespace ShaderForge {
 
 			string catUtility = "Utility/";
 			AddTemplate( typeof( SFN_Relay ),	catUtility + "Relay" );
-			AddTemplate( typeof( SFN_Get ),		catUtility + "Get", KeyCode.G ).MarkAsNewNode();
-			AddTemplate( typeof( SFN_Set ),		catUtility + "Set" ).MarkAsNewNode();
-			
+			AddTemplate( typeof( SFN_Get ),		catUtility + "Get", KeyCode.G );
+			AddTemplate( typeof( SFN_Set ),		catUtility + "Set" );
+
 
 
 			SF_EditorNodeData ssDiff = TryAddTemplateDynamic( "SFN_SkyshopDiff", "Skyshop/" + "Skyshop Diffuse" );
-			if(ssDiff != null)
-				ssDiff.MarkAsNewNode();
+			// if(ssDiff != null)
+			// 	ssDiff.MarkAsNewNode();
 
 			SF_EditorNodeData ssSpec = TryAddTemplateDynamic( "SFN_SkyshopSpec", "Skyshop/" + "Skyshop Specular" );
-			if( ssSpec != null )
-				ssSpec.MarkAsNewNode();
-			
+			// if( ssSpec != null )
+			// 	ssSpec.MarkAsNewNode();
+
 
 
 
@@ -375,7 +375,7 @@ namespace ShaderForge {
 			}
 		}
 
-		 
+
 		public static Type GetNodeType(string nodeName){
 
 			Assembly asm = EditorAssembly;
@@ -525,14 +525,14 @@ namespace ShaderForge {
 				//CreateOutputNode();
 			} else {
 				currentShaderAsset = initShader;
-				
+
 				bool loaded = SF_Parser.ParseNodeDataFromShader( this, initShader );
 				if( !loaded ) {
 					initShader = null;
 					DestroyImmediate( this );
 					return false;
 				}
-					
+
 				// Make preview material use this shader
 				//preview.material.shader = currentShaderAsset;
 				Material m = preview.InternalMaterial;
@@ -632,7 +632,7 @@ namespace ShaderForge {
 		bool Clicked() {
 			return Event.current.type == EventType.MouseDown;
 		}
-		
+
 		float fps = 0;
 		double prevFrameTime = 1;
 		public double deltaTime = 0.02;
@@ -671,24 +671,24 @@ namespace ShaderForge {
 				base.Close();
 				return;
 			}
-			
-			
+
+
 			double now = Now();
 			double deltaTime = now-prevFrameTime;
 			fps = 1f/(float)deltaTime;
 
 
-			
+
 			if(fps > 60)
 				return; // Wait for target FPS
-			
+
 
 			prevFrameTime = now;
 
 			preview.UpdateRot();
 
-			
-			
+
+
 			for (int i = nodes.Count - 1; i >= 0; i--) {
 				if(nodes[i] == null)
 					nodes.Remove(nodes[i]);
@@ -714,10 +714,10 @@ namespace ShaderForge {
 				}
 			}
 
-			
-			
 
-				
+
+
+
 
 			if( ShaderOutdated == UpToDateState.OutdatedHard && SF_Settings.autoCompile && nodeView.GetTimeSinceChanged() >= 1f) {
 				shaderEvaluator.Evaluate();
@@ -730,7 +730,7 @@ namespace ShaderForge {
 
 		}
 
-	
+
 
 		MethodInfo isDockedMethod;
 		const float dockedCheckInterval = 1f;
@@ -757,7 +757,7 @@ namespace ShaderForge {
 		}
 
 
-		
+
 		public double Now(){
 			TimeSpan t = ( DateTime.UtcNow - startTime );
 			return t.TotalSeconds;
@@ -776,7 +776,7 @@ namespace ShaderForge {
 			//Debug.Log("Force close");
 			closeMe = true;
 			GUIUtility.ExitGUI();
-		} 
+		}
 
 		void AddDependenciesHierarchally(SF_Node node, DependencyTree<SF_Node> tree){
 			node.ReadDependencies();
@@ -788,7 +788,7 @@ namespace ShaderForge {
 
 		public List<SF_Node> GetDepthSortedDependencyTreeForConnectedNodes(bool reverse = false){
 			DependencyTree<SF_Node> tree = new DependencyTree<SF_Node>();
-			
+
 			AddDependenciesHierarchally(mainNode, tree);
 			//Debug.Log(tree.tree.Count);
 			tree.Sort();
@@ -819,7 +819,7 @@ namespace ShaderForge {
 
 			if(SF_Parser.quickLoad) // Don't draw while loading
 				return;
-			
+
 			if(SF_Debug.performance)
 				GUI.Label(new Rect(500,64,128,64),"fps: "+fps.ToString());
 
@@ -868,7 +868,7 @@ namespace ShaderForge {
 						n.DrawConnections();
 					}
 				}
-					
+
 			}
 
 			if(separatorLeft == null){
@@ -930,7 +930,7 @@ namespace ShaderForge {
 
 
 
-			
+
 
 			//pRect.x += pRect.width;
 			//pRect.width = wSeparator;
@@ -971,7 +971,7 @@ namespace ShaderForge {
 				menu.AddItem( new GUIContent("Take screenshot of node tree"), false, ContextClickScreenshot, "ss_standard" );
 				menu.AddItem( new GUIContent("Take screenshot of node tree without 3D preview"), false, ContextClickScreenshot, "ss_nopreview" );
 				menu.ShowAsContext();
-				
+
 			}
 			GUI.color = Color.white;
 
@@ -1008,7 +1008,7 @@ namespace ShaderForge {
 		Color ssButtonColor = Color.black;
 		Color ssButtonColorTarget = Color.black;
 		float ssButtonFadeSpeed = 0.5f;
-	
+
 
 		public void ContextClickScreenshot( object o ) {
 			string picked = o as string;
@@ -1091,11 +1091,11 @@ namespace ShaderForge {
 					}
 				}
 			}
-			
-			
-			
-			
-			
+
+
+
+
+
 			for(int ix=0;ix<xTiles;ix++){
 				for(int iy=0;iy<yTiles;iy++){
 					r = nodeView.rect.PadBottom(24);
@@ -1159,7 +1159,7 @@ namespace ShaderForge {
 					TextClipping prevClip = GUI.skin.label.clipping;
 					//GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 					GUI.skin.label.clipping = TextClipping.Overflow;
-					GUI.Label(crBottom, SF_Tools.versionStage + " v" + SF_Tools.version + " - http://u3d.as/6cc");
+					// GUI.Label(crBottom, SF_Tools.versionStage + " v" + SF_Tools.version + " - http://u3d.as/6cc");
 					GUI.skin.label.clipping = prevClip;
 
 					if(SF_Debug.screenshot){
@@ -1290,7 +1290,7 @@ namespace ShaderForge {
 		public static string CleanFileName(string filename){
 			filename.Replace("/","");
 			return new String(filename.Except(System.IO.Path.GetInvalidFileNameChars()).ToArray());
-		}   
+		}
 
 
 
@@ -1310,70 +1310,70 @@ namespace ShaderForge {
 					lines.Add(con.conLine);
 					con.conLine.ReconstructShapes();
 					for (int j = 0; j < con.conLine.pointsBezier0.Length; j++) {
-						
+
 						con.conLine.pointsBezier0[j] = con.conLine.pointsBezier0[j] ; //+ new Vector2(nodeWrap.width, nodeWrap.height) - new Vector2(r.width*0.5f,r.height*0.5f);//new Vector2(600,1330);
-						
+
 					}
 				}
-				
+
 			}
 			if(extraRects != null)
 				nodeRects.AddRange(extraRects);
-			
-			
+
+
 			Rect[] borderRects = new Rect[]{
 				nodeWrap.MovedRight(),
 				nodeWrap.MovedLeft(),
 				nodeWrap.MovedUp(),
 				nodeWrap.MovedDown()
 			};
-			
+
 			for (int i = 0; i < 4; i++) {
 				nodeRects.Add(borderRects[i]);
 			}
-			
-			
-			
+
+
+
 			int distSampleRes = 16;
 			float distSampleResF = distSampleRes;
-			
-			
+
+
 			//Texture2D mask = new Texture2D(Mathf.CeilToInt(nodeWrap.width/distSampleResF),Mathf.CeilToInt(nodeWrap.height/distSampleResF),TextureFormat.RGB24,false);
 			//mask.hideFlags = HideFlags.HideAndDontSave;
 
 			int width = Mathf.CeilToInt(nodeWrap.width/distSampleResF);
 			int height = Mathf.CeilToInt(nodeWrap.height/distSampleResF);
-			
+
 			float longestDist = float.MinValue;
 			Vector2 longestDistPt = Vector2.zero;
-			
-			
+
+
 			// GENERATE MASK
 			Color[] newMaskPixels = new Color[width*height];
 			for (int i = 0; i < newMaskPixels.Length; i+=1) {
-				
-				
-				
+
+
+
 				//Color pixel = Color.white;
-				
-				
-				
+
+
+
 				Vector2 testPt = new Vector2(i%width, height - Mathf.FloorToInt((float)i/width))*distSampleResF + nodeWrap.TopLeft();
-				
+
 				//pixel *= Mathf.Clamp01((testPt - nodeWrap.TopLeft()).magnitude/256f);
 				//pixel *= Mathf.Clamp01((nodePoints[0] - testPt).magnitude/256f);
 				//pixel *= Mathf.Clamp01(testPt.ShortestChebyshevDistanceToPoints(nodePoints)/256f);
-				
+
 				float dist2rect = testPt.ShortestManhattanDistanceToRects(nodeRects.ToArray());
 				float dist2line = float.MaxValue;
-				
+
 				foreach(SF_NodeConnectionLine line in lines){
 					dist2line = Mathf.Min(dist2line, SF_Tools.DistanceToLine(line.pointsBezier0[0],line.pointsBezier0[line.pointsBezier0.Length-1],testPt));
 				}
-				
-				
+
+
 				float shortest = Mathf.Min(dist2rect, dist2line);
-				
+
 				if(shortest > longestDist){
 					longestDist = shortest;
 					longestDistPt = testPt;
@@ -1381,9 +1381,9 @@ namespace ShaderForge {
 				}// else {
 					//pixel = Color.white * Mathf.Clamp01(shortest/(Mathf.Max(nodeWrap.width,nodeWrap.height)*0.2f));
 				//}
-				
-				
-				
+
+
+
 				//pixel.a = 1f;
 				//newMaskPixels[i] = pixel;
 			}
@@ -1431,7 +1431,7 @@ namespace ShaderForge {
 			return separatorLeft.dragging || separatorRight.dragging;
 		}
 
-		
+
 
 		public void FlexHorizontal(Action func){
 			GUILayout.BeginHorizontal(); GUILayout.FlexibleSpace();
@@ -1449,7 +1449,7 @@ namespace ShaderForge {
 
 		private MainMenuState menuState = MainMenuState.Main;
 
-		
+
 		public void DrawMainMenu() {
 
 
@@ -1463,7 +1463,6 @@ namespace ShaderForge {
 
 				FlexHorizontal(()=>{
 					GUILayout.Label( SF_GUI.Logo );
-					GUILayout.Label( SF_Tools.versionStage + " v" + SF_Tools.version, EditorStyles.boldLabel );
 				});
 
 
@@ -1486,9 +1485,9 @@ namespace ShaderForge {
 
 					DrawCreditsGUI();
 				}
-				
 
-				
+
+
 
 				GUILayout.FlexibleSpace();
 			}
@@ -1500,13 +1499,8 @@ namespace ShaderForge {
 		public void DrawCreditsGUI(){
 			EditorGUILayout.Separator();
 			FlexHorizontal(()=>{
-				GUILayout.Label( "Thanks for purchasing Shader Forge <3" );
-			});
-			EditorGUILayout.Separator();
-			EditorGUILayout.Separator();
-			FlexHorizontal(()=>{
-				GUILayout.Label( "Created by ", SF_Styles.CreditsLabelText);
-				GUILayout.Label( "Freya 'Acegikmo' Holm" + '\u00e9' + "r", EditorStyles.boldLabel);
+				// GUILayout.Label( "Created by ", SF_Styles.CreditsLabelText);
+				GUILayout.Label( "Created by Freya 'Acegikmo' Holm" + '\u00e9' + "r", EditorStyles.boldLabel);
 			});
 			EditorGUILayout.Separator();
 			EditorGUILayout.Separator();
@@ -1536,7 +1530,7 @@ namespace ShaderForge {
 
 			EditorGUILayout.Separator();
 			FlexHorizontal(()=>{
-				if( GUILayout.Button( "Return to menu", GUILayout.Height( 30f ), GUILayout.Width( 190f ) ) ) {
+				if( GUILayout.Button( "Return to home", GUILayout.Height( 30f ), GUILayout.Width( 190f ) ) ) {
 					menuState = MainMenuState.Main;
 				}
 			});
@@ -1584,7 +1578,7 @@ namespace ShaderForge {
 		}
 
 
-		public string[] shaderPresetDescriptions = new string[] { 
+		public string[] shaderPresetDescriptions = new string[] {
 			"Unlit means that light sources will not affect this shader, it will simply have the color you give it, regardless of the scene setup.",
 			"Lit (PBR) is set up to match Unity's Physically Based shader, affected by lightmaps, light probes, reflection probes etc.",
 			"Lit (Basic) is the old-school Blinn-Phong lighting model. Direct lighting only, no lightmap or probe data.",
@@ -1617,7 +1611,7 @@ namespace ShaderForge {
 			} );
 			EditorGUILayout.Separator();
 
-			
+
 
 			FlexHorizontal( () => {
 
@@ -1631,7 +1625,7 @@ namespace ShaderForge {
 
 				//GUILayout.BeginVertical();
 				for(int i=0;i<shaderPresetNames.Length;i++){
-					
+
 					GUILayout.Label( GetShaderPresetIcon( (ShaderPresets)i ), btnLayout );
 
 					Rect r = GUILayoutUtility.GetLastRect();
@@ -1646,16 +1640,16 @@ namespace ShaderForge {
 						desc = shaderPresetDescriptions[i];
 					}
 
-					
+
 
 
 
 					GUI.color = Color.clear;
-					
+
 
 
 					if( GUI.Button( r, "" ) ) {
-						
+
 						bool created = TryCreateNewShader( (ShaderPresets)i );
 						if( created )
 							return;
@@ -1665,7 +1659,7 @@ namespace ShaderForge {
 				//GUILayout.EndVertical();
 
 			});
-		
+
 			EditorGUILayout.Separator();
 			EditorGUILayout.Separator();
 			EditorGUILayout.Separator();
@@ -1690,7 +1684,7 @@ namespace ShaderForge {
 
 
 
-			
+
 		}
 
 
@@ -1731,27 +1725,7 @@ namespace ShaderForge {
 
 		public void DrawPrimaryMainMenuGUI() {
 
-
-
-			FlexHorizontal( () => {
-				GUI.color = new Color( 0.7f, 0.7f, 0.7f );
-				if( GUILayout.Button( '\u00a9' + " Freya 'Acegikmo' Holm" + '\u00e9' + "r", EditorStyles.miniLabel ) ) {
-					Application.OpenURL( "https://twitter.com/FreyaHolmer" );
-				}
-
-				SF_GUI.AssignCursorForPreviousRect( MouseCursor.Link );
-				GUI.color = Color.white;
-			} );
-
 			EditorGUILayout.Separator();
-
-			/*
-				FlexHorizontal(()=>{
-					if( GUILayout.Button(SF_Tools.manualLabel , GUILayout.Height( 32f ), GUILayout.Width( 190f ) ) ) {
-						Application.OpenURL( SF_Tools.manualURL );
-					}
-				});
-			*/
 
 			FlexHorizontal( () => {
 
@@ -1771,29 +1745,19 @@ namespace ShaderForge {
 
 
 
-			FlexHorizontal( () => {
-				if( GUILayout.Button( SF_Tools.documentationLabel ) ) {
-					Application.OpenURL( SF_Tools.documentationURL );
-				}
-				if( GUILayout.Button( "Wiki" ) ) {
-					Application.OpenURL( "http://acegikmo.com/shaderforge/wiki" );
-				}
-			} );
 
-			FlexHorizontal( () => {
-				if( GUILayout.Button( "Shader Forge on GitHub", GUILayout.ExpandWidth( false ) ) ) {
-					Application.OpenURL( "https://github.com/FreyaHolmer/ShaderForge" );
-				}
-			});
 			FlexHorizontal( () => {
 				if( GUILayout.Button( "Credits", GUILayout.ExpandWidth( false ) ) ) {
 					menuState = MainMenuState.Credits;
 				}
+				if( GUILayout.Button( "GitHub", GUILayout.ExpandWidth( false ) ) ) {
+					Application.OpenURL( "https://github.com/CuteWaterBeary/ShaderForge" );
+				}
 			});
 		}
-		
-		
-		
+
+
+
 		public bool PropertyNameTaken(SF_ShaderProperty sProp){
 			foreach(SF_Node n in nodes){
 				if(n == sProp.node)
@@ -1804,8 +1768,8 @@ namespace ShaderForge {
 			}
 			return false;
 		}
-		
-		
+
+
 		public void OpenLoadDialog(){
 			string path = EditorUtility.OpenFilePanel(
 							"Load Shader",
@@ -1835,15 +1799,15 @@ namespace ShaderForge {
 							if(!allowEdit)
 								allowEdit = SF_GUI.AcceptedNewShaderReplaceDialog();
 
-							
+
 							if( allowEdit ) {
 								SF_Editor.Init( loadedShader );
 							} else {
 								//Debug.LogError( "User cancelled loading operation" );
 							}
-								
+
 						}
-			
+
 		}
 
 
@@ -1851,13 +1815,13 @@ namespace ShaderForge {
 		public bool TryCreateNewShader(SF_Editor.ShaderPresets preset) {
 
 
-			
-			
+
+
 
 			//Shader s = (Shader)AssetDatabase.LoadAssetAtPath( presetPath, typeof(Shader) );
 			//Debug.Log( s);
 
-	
+
 
 			string savePath = EditorUtility.SaveFilePanel(
 				"Save new shader",
@@ -1921,7 +1885,7 @@ namespace ShaderForge {
 				return false;
 			}
 
-			
+
 
 			// Make sure the preview material is using the shader
 			preview.InternalMaterial.shader = currentShaderAsset;
@@ -1958,24 +1922,24 @@ namespace ShaderForge {
 			Rect btnRect = new Rect(r);
 			btnRect.y += 4;
 			btnRect.x += 2;
-			//btnRect.xMin += logoRect.width;
 
-			int wDiff = 8;
+			// int wDiff = 8;
 
 			btnRect.height = 17;
-			btnRect.width /= 4;
-			btnRect.width += wDiff;
+			btnRect.width /= 5;
+			// btnRect.width += wDiff;
 
 			GUIStyle btnStyle = EditorStyles.miniButton;
 
-			if(GUI.Button(btnRect,"Return to menu",btnStyle)){
+			if(GUI.Button(btnRect,"Home", btnStyle)){
 				OnPressBackToMenuButton();
 			}
+
 			btnRect.x += btnRect.width;
-			btnRect.xMax -= wDiff*2;
-			btnRect.width *= 0.75f;
-			displaySettings = GUI.Toggle(btnRect, displaySettings, "Settings",btnStyle);
-		
+			// btnRect.xMax -= wDiff*2;
+			// btnRect.width *= 0.75f;
+			displaySettings = GUI.Toggle(btnRect, displaySettings, "Settings", btnStyle);
+
 			btnRect.x += btnRect.width;
 			btnRect.width *= 2f;
 
@@ -1985,7 +1949,7 @@ namespace ShaderForge {
 					shaderEvaluator.Evaluate();
 			}
 			GUI.color = Color.white;
-			
+
 			nodeView.DrawRecompileTimer(btnRect);
 			btnRect.x += btnRect.width;
 			btnRect.width *= 0.5f;
@@ -2003,7 +1967,7 @@ namespace ShaderForge {
 				btnRect.width = r.width / 4f;
 				btnRect.x += btnRect.width;
 				btnRect.width *= 2.55f;
-				
+
 				/*Rect[] splitRects = btnRect.SplitHorizontal( 0.5f, 1 ); // Node render mode control
 				GUI.Label( splitRects[1], "Node rendering" );
 				EditorGUI.BeginChangeCheck();
@@ -2023,7 +1987,7 @@ namespace ShaderForge {
 						RegenerateNodeBaseData();
 					}
 				}
-				
+
 				btnRect = btnRect.MovedDown();
 				SF_Settings.quickPickScrollWheel = GUI.Toggle( btnRect, SF_Settings.quickPickScrollWheel, "Use scroll in the quickpicker" );
 				btnRect = btnRect.MovedDown();
@@ -2038,7 +2002,7 @@ namespace ShaderForge {
 				} else {
 					SF_Settings.hierarchalNodeMove = GUI.Toggle( btnRect, SF_Settings.hierarchalNodeMove, "Hierarchal Node Move" );
 				}
-				
+
 				btnRect.y += 4;
 			}
 
