@@ -9,7 +9,7 @@
 
 [![openupm](https://img.shields.io/npm/v/com.ltmx.unity.shaderforge?label=openupm&style=for-the-badge&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.unity.shaderforge)
 
-
+Readme.md by [CuteWaterBeary](https://github.com/CuteWaterBeary)
 
 ![](/.images/shaderforge1.jpg)
 
