@@ -5,6 +5,8 @@
 
 ---
 
+[Visit ShaderForge Website](https://www.acegikmo.com/shaderforge/)
+
 ### To install, clone this repo to your assets folder.
 
 ## Quick start
