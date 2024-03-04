@@ -20,5 +20,12 @@
     "repository": {
       "url": "https://github.com/ltmx/ShaderForge.git",
       "type": "git"
-    }
+    },
+    "samples": [
+        {
+            "displayName": "Example Assets",
+            "description": "Contains sample shaders",
+            "path": "Samples~/Example Assets"
+        }
+    ]
   }
