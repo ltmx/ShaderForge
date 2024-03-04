@@ -1,13 +1,15 @@
-# SHADER FORGE
+# Shader Forge 
+*The ultimate visual node-based shader editor for Unity* - by [Freya Holmér](https://github.com/FreyaHolmer)
 
 ![](/.images/shaderforge1.jpg)
-![](/.images/shaderforge2.jpg)
 
 ---
 
-[Visit ShaderForge Website](https://www.acegikmo.com/shaderforge/)
+## [Visit ShaderForge Website](https://www.acegikmo.com/shaderforge/)
 
-### To install, clone this repo to your assets folder.
+### Install
+
+Unity Package Manager > Install From Git URL > Copy-Paste [https://github.com/ltmx/ShaderForge.git](https://github.com/ltmx/ShaderForge.git)
 
 ## Quick start
 - Panning = Click and drag empty space
@@ -28,6 +30,7 @@
 
 - Disconnect connectors = Alt+RMB on connectors to disconnect them. Alternatively, hover the cursor over a connector and press backspace
 
+![](/.images/shaderforge2.jpg)
 
 ![](.images/shaderforge_quickstart_1.png)
 ![](.images/shaderforge_quickstart_2.png)
