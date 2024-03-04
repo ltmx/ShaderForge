@@ -7,15 +7,18 @@
     "name": "com.ltmx.unity.shaderforge",
     "displayName": "Shader Forge",
     "description": "The ultimate visual node-based shader editor for Unity",
-    "version": "1.0.0",
-    "unity": "2018.3",
+    "version": "2.0.0",
+    "unity": "2019.1",
     "dependencies": {
 
     },
     "keywords": [
       "unity",
       "shader",
-      "editor"
+      "editor",
+      "shaderforge",
+      "vfx",
+      "render"
     ],
     "repository": {
       "url": "https://github.com/ltmx/ShaderForge.git",
