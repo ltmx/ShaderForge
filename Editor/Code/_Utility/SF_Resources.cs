@@ -54,7 +54,7 @@ namespace ShaderForge{
 
 		private static bool SearchForInternalResourcesPath( out string path ){
 			path = "";
-			string partialPath = "/ShaderForge/Editor/InternalResources/";
+			string partialPath = "Packages/com.ltmx.unity.shaderforge/Editor/InternalResources/";
 			string foundPath = null;
 			foreach(string s in AssetDatabase.GetAllAssetPaths()){
 				if(s.Contains(partialPath)){
