@@ -1,0 +1,24 @@
+{
+    "author": {
+      "name": "LTMX",
+      "email": "nicolasreinhard.pro@gmail.com",
+      "url": "https://github.com/ltmx"
+    },
+    "name": "com.ltmx.unity.shaderforge",
+    "displayName": "Shader Forge",
+    "description": "The ultimate visual node-based shader editor for Unity",
+    "version": "1.0.0",
+    "unity": "2018.3",
+    "dependencies": {
+
+    },
+    "keywords": [
+      "unity",
+      "shader",
+      "editor"
+    ],
+    "repository": {
+      "url": "https://github.com/ltmx/ShaderForge.git",
+      "type": "git"
+    }
+  }
