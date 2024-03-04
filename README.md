@@ -1,6 +1,16 @@
 # Shader Forge 
 *The ultimate visual node-based shader editor for Unity* - by [Freya Holmér](https://github.com/FreyaHolmer)
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/ltmx/Unity.mathx?color=blueviolet&style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/ltmx/ShaderForge?style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/ltmx/ShaderForge?color=success&style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/ltmx/ShaderForge?style=for-the-badge)
+[![Made for Unity](https://img.shields.io/badge/Made%20for-Unity-57b9d3.svg?style=for-the-badge&logo=unity&color=blueviolet)](https://unity3d.com)
+
+[![openupm](https://img.shields.io/npm/v/com.ltmx.unity.shaderforge?label=openupm&style=for-the-badge&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.unity.shaderforge)
+
+
+
 ![](/.images/shaderforge1.jpg)
 
 ---
